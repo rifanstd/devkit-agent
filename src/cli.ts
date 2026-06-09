@@ -6,10 +6,10 @@ const args = process.argv.slice(2);
 
 function showHelp(): void {
   console.log(`
-${pc.bold(pc.cyan('@rifanstd/devkit-agent'))} ${pc.dim('- OpenCode devkit installer')}
+${pc.bold(pc.cyan('devkit-agent'))} ${pc.dim('- OpenCode devkit installer')}
 
 ${pc.bold('Usage:')}
-  npx @rifanstd/devkit-agent [options]
+  npx devkit-agent [options]
 
 ${pc.bold('Options:')}
   -g, --global      Install to global scope (~/.config/opencode/)
@@ -18,9 +18,9 @@ ${pc.bold('Options:')}
   -h, --help        Show this help message
 
 ${pc.bold('Examples:')}
-  ${pc.dim('npx @rifanstd/devkit-agent')}              ${pc.dim('# Interactive install')}
-  ${pc.dim('npx @rifanstd/devkit-agent -g')}           ${pc.dim('# Global install')}
-  ${pc.dim('npx @rifanstd/devkit-agent -u')}           ${pc.dim('# Interactive uninstall')}
+  ${pc.dim('npx devkit-agent')}              ${pc.dim('# Interactive install')}
+  ${pc.dim('npx devkit-agent -g')}           ${pc.dim('# Global install')}
+  ${pc.dim('npx devkit-agent -u')}           ${pc.dim('# Interactive uninstall')}
 `);
 }
 

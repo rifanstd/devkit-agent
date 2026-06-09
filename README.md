@@ -1,27 +1,27 @@
-# @rifanstd/devkit-agent
+# devkit-agent
 
 Multi-agent coding pipeline for OpenCode. Install agents and skills with one command.
 
 ## Installation
 
 ```bash
-npx @rifanstd/devkit-agent
+npx devkit-agent
 ```
 
 ## Quick Start
 
 ```bash
 # Interactive install (recommended)
-npx @rifanstd/devkit-agent
+npx devkit-agent
 
 # Install to global scope
-npx @rifanstd/devkit-agent -g
+npx devkit-agent -g
 
 # Install all agents without prompts
-npx @rifanstd/devkit-agent -g -y
+npx devkit-agent -g -y
 
 # Uninstall
-npx @rifanstd/devkit-agent -u
+npx devkit-agent -u
 ```
 
 ## How It Works
@@ -215,7 +215,7 @@ graph LR
 
 ```bash
 cd my-project
-npx @rifanstd/devkit-agent
+npx devkit-agent
 ```
 
 This creates:
@@ -239,7 +239,7 @@ my-project/
 ### Install Globally
 
 ```bash
-npx @rifanstd/devkit-agent -g
+npx devkit-agent -g
 ```
 
 This creates:
@@ -254,7 +254,7 @@ This creates:
 ### Uninstall Specific Agents
 
 ```bash
-npx @rifanstd/devkit-agent -u
+npx devkit-agent -u
 ```
 
 The CLI will:

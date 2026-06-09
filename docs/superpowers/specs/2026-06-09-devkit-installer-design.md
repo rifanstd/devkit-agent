@@ -1,11 +1,11 @@
-# Design: @rifanstd/devkit-agent Installer CLI
+# Design: devkit-agent Installer CLI
 
 ## Context
 
 Membuat CLI installer untuk repo `devkit-agent` agar dapat diinstall oleh pengguna OpenCode melalui `npx` atau `npm`. Repo ini berisi agent dan skill definitions untuk multi-agent coding pipeline.
 
 **Target:** Pengguna OpenCode
-**Install method:** `npx @rifanstd/devkit-agent` (interactive CLI)
+**Install method:** `npx devkit-agent` (interactive CLI)
 **Scope:** Global (`~/.config/opencode/`) atau Project (`.opencode/`)
 
 ## Architecture
@@ -13,7 +13,7 @@ Membuat CLI installer untuk repo `devkit-agent` agar dapat diinstall oleh penggu
 ### Package Structure
 
 ```
-@rifanstd/devkit-agent/
+devkit-agent/
 ├── src/
 │   ├── cli.ts              # Entry point, argument parsing
 │   ├── commands/
@@ -99,9 +99,9 @@ function getRequiredSkills(selectedAgents: string[]): string[] {
 ### Command
 
 ```bash
-npx @rifanstd/devkit-agent uninstall
+npx devkit-agent uninstall
 # atau
-npx @rifanstd/devkit-agent --uninstall
+npx devkit-agent --uninstall
 ```
 
 ### Interactive Flow
@@ -136,7 +136,7 @@ When uninstalling agents, the CLI:
 
 ```json
 {
-  "name": "@rifanstd/devkit-agent",
+  "name": "devkit-agent",
   "version": "1.0.0",
   "description": "Installer for OpenCode devkit agents and skills",
   "type": "module",
@@ -161,40 +161,40 @@ When uninstalling agents, the CLI:
 
 ```bash
 # Interactive (default)
-npx @rifanstd/devkit-agent
+npx devkit-agent
 
 # With options
-npx @rifanstd/devkit-agent --global        # Global scope
-npx @rifanstd/devkit-agent --yes           # Skip confirmations
-npx @rifanstd/devkit-agent -g -y           # Combined
+npx devkit-agent --global        # Global scope
+npx devkit-agent --yes           # Skip confirmations
+npx devkit-agent -g -y           # Combined
 ```
 
 ### Uninstall
 
 ```bash
 # Interactive
-npx @rifanstd/devkit-agent --uninstall
-npx @rifanstd/devkit-agent -u
+npx devkit-agent --uninstall
+npx devkit-agent -u
 
 # With options
-npx @rifanstd/devkit-agent -u --global     # Uninstall from global
-npx @rifanstd/devkit-agent -u -y           # Skip confirmations
+npx devkit-agent -u --global     # Uninstall from global
+npx devkit-agent -u -y           # Skip confirmations
 ```
 
 ### Help
 
 ```bash
-npx @rifanstd/devkit-agent --help
-npx @rifanstd/devkit-agent -h
+npx devkit-agent --help
+npx devkit-agent -h
 ```
 
 ### Help Output
 
 ```
-@rifanstd/devkit-agent - OpenCode devkit installer
+devkit-agent - OpenCode devkit installer
 
 Usage:
-  npx @rifanstd/devkit-agent [options]
+  npx devkit-agent [options]
 
 Options:
   -g, --global      Install to global scope (~/.config/opencode/)
@@ -203,9 +203,9 @@ Options:
   -h, --help        Show this help message
 
 Examples:
-  npx @rifanstd/devkit-agent              # Interactive install
-  npx @rifanstd/devkit-agent -g           # Global install
-  npx @rifanstd/devkit-agent -u           # Interactive uninstall
+  npx devkit-agent              # Interactive install
+  npx devkit-agent -g           # Global install
+  npx devkit-agent -u           # Interactive uninstall
 ```
 
 ### Error Handling

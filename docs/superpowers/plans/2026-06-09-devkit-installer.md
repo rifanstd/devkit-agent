@@ -1,4 +1,4 @@
-# @rifanstd/devkit-agent Installer Implementation Plan
+# devkit-agent Installer Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -13,7 +13,7 @@
 ## File Structure
 
 ```
-@rifanstd/devkit-agent/
+devkit-agent/
 ├── src/
 │   ├── cli.ts              # Entry point, argument parsing, command routing
 │   ├── commands/
@@ -46,7 +46,7 @@
 
 ```json
 {
-  "name": "@rifanstd/devkit-agent",
+  "name": "devkit-agent",
   "version": "1.0.0",
   "description": "Installer for OpenCode devkit agents and skills",
   "type": "module",
@@ -693,10 +693,10 @@ const args = process.argv.slice(2);
 
 function showHelp(): void {
   console.log(`
-${pc.bold(pc.cyan('@rifanstd/devkit-agent'))} ${pc.dim('- OpenCode devkit installer')}
+${pc.bold(pc.cyan('devkit-agent'))} ${pc.dim('- OpenCode devkit installer')}
 
 ${pc.bold('Usage:')}
-  npx @rifanstd/devkit-agent [options]
+  npx devkit-agent [options]
 
 ${pc.bold('Options:')}
   -g, --global      Install to global scope (~/.config/opencode/)
@@ -705,9 +705,9 @@ ${pc.bold('Options:')}
   -h, --help        Show this help message
 
 ${pc.bold('Examples:')}
-  ${pc.dim('npx @rifanstd/devkit-agent')}              ${pc.dim('# Interactive install')}
-  ${pc.dim('npx @rifanstd/devkit-agent -g')}           ${pc.dim('# Global install')}
-  ${pc.dim('npx @rifanstd/devkit-agent -u')}           ${pc.dim('# Interactive uninstall')}
+  ${pc.dim('npx devkit-agent')}              ${pc.dim('# Interactive install')}
+  ${pc.dim('npx devkit-agent -g')}           ${pc.dim('# Global install')}
+  ${pc.dim('npx devkit-agent -u')}           ${pc.dim('# Interactive uninstall')}
 `);
 }
 
