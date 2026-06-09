@@ -26,150 +26,19 @@ npx devkit-agent -u
 
 ## How It Works
 
-### Multi-Agent Pipeline
+### Overview
 
-When you give a complex task, the Orchestrator routes it through a pipeline of specialist agents:
+![Pipeline Flow](docs/overview/flow.png)
 
-```
-     ┌──────────────────────────────────────────────────────────┐
-     │                     USER REQUEST                         │
-     └──────────────────────────┬───────────────────────────────┘
-                                │
-                                ▼
-     ┌──────────────────────────────────────────────────────────┐
-     │                     ORCHESTRATOR                         │
-     │               (Manager & Team Lead)                      │
-     │                                                          │
-     │  • Assesses complexity (DIRECT vs MULTI-AGENT)           │
-     │  • Routes to specialist agents                           │
-     │  • Manages approval checkpoints                          │
-     │  • Hub-and-spoke communication                           │
-     └──────────────────┬────────┬───────────┬──────────────────┘
-                        │        |           │
-            ┌───────────┘        |           └───────────────────┐
-            │                    |                               │
-            ▼                    ▼                               ▼
-   ┌─────────────────┐  ┌─────────────────┐       ┌─────────────────┐
-   │     ANALYST     │  │     PLANNER     │       │   PROGRAMMER    │
-   │                 │  │                 │       │                 │
-   │ • Requirements  │  │ • Task breakdown│       │ • Code writing  │
-   │ • Clarification │  │ • Dependencies  │       │ • Implementation│
-   │ • Documentation │  │ • Risk analysis │       │ • Testing       │
-   └────────┬────────┘  └────────┬────────┘       └────────┬────────┘
-            │                    │                         │
-            │                    │                         ▼
-            │                    │                ┌─────────────────┐
-            │                    │                │    REVIEWER     │
-            │                    │                │                 │
-            │                    │                │ • Code review   │
-            │                    │                │ • Quality check │
-            │                    │                │ • Security scan │
-            │                    │                └────────┬────────┘
-            │                    │                         │
-            ▼                    ▼                         ▼
-   ┌───────────────────────────────────────────────────────────────────────┐
-   │                              SESSION ARTIFACTS                        │
-   │                                                                       │
-   │   .knowledge/sessions/<session-id>/                                   │
-   │     ├── status.md        ← Session state tracking                     │
-   │     ├── requirements.md  ← Analyst output                             │
-   │     ├── plan.md          ← Planner output                             │
-   │     └── review.md        ← Reviewer output                            │
-   └───────────────────────────────────────────────────────────────────────┘
-```
+![Skills Integration](docs/overview/skills-integration.png)
 
-### Pipeline Flow
-
-```mermaid
-flowchart TD
-    A[User Request] --> B{Orchestrator}
-    B -->|Simple| C[Direct Answer]
-    B -->|Complex| D[Multi-Agent Pipeline]
-    
-    D --> E[Analyst]
-    E --> F[Requirements Document]
-    F --> G{User Approval}
-    G -->|Approved| H[Planner]
-    G -->|Changes| E
-    
-    H --> I[Implementation Plan]
-    I --> J{User Approval}
-    J -->|Approved| K[Programmer]
-    J -->|Changes| H
-    
-    K --> L[Code Changes]
-    L --> M[Reviewer]
-    
-    M --> N{Verdict}
-    N -->|PASS| O[Task Complete]
-    N -->|FAIL| P[Fix Issues]
-    N -->|CRITICAL| Q[Escalate to User]
-    
-    P --> K
-    K --> L
-    L --> M
-    
-    style A fill:#e1f5fe
-    style O fill:#c8e6c9
-    style Q fill:#ffcdd2
-```
-
-### Agent & Skill Mapping
-
-Each agent has specialized skills they can load at runtime :
-
-```
-┌──────────────────────────────────────────────────────────────────────────┐
-│                          AGENT-SKILL MAP                                 │
-├──────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  ORCHESTRATOR ──────────────┬── subagent-driven-development              │
-│       │                     │                                            │
-│       ├──► ANALYST ─────────┼── brainstorming                            │
-│       │                     │                                            │
-│       ├──► PLANNER ─────────┼── writing-plans                            │
-│       │                     │                                            │
-│       ├──► PROGRAMMER ──────┼── receiving-code-review                    │
-│       │                     ├── verification-before-completion           │
-│       │                     └── systematic-debugging                     │
-│       │                                                                  │
-│       └──► REVIEWER ────────┼── requesting-code-review                   │
-│                             ├── verification-before-completion           │
-│                             └── systematic-debugging                     │
-│                                                                          │
-└──────────────────────────────────────────────────────────────────────────┘
-```
-
-### Skills in Action
-
-Skills are reusable instruction sets that agents load at runtime. Each skill can be used by multiple agents.
-
-```mermaid
-graph LR
-    subgraph Agent["🤖 Agent (e.g., Programmer)"]
-        A[Agent Definition]
-        S1["## Skill Usage: systematic-debugging"]
-    end
-    
-    subgraph Skills["📚 Skills"]
-        SK1[systematic-debugging/SKILL.md]
-        SK2[verification-before-completion/SKILL.md]
-        SK3[receiving-code-review/SKILL.md]
-    end
-    
-    subgraph Workflow["⚙️ Workflow"]
-        W1[Phase 1: Root Cause]
-        W2[Phase 2: Pattern Analysis]
-        W3[Phase 3: Hypothesis]
-        W4[Phase 4: Implementation]
-    end
-    
-    A -->|"Loads skill"| SK1
-    SK1 --> W1
-    W1 --> W2
-    W2 --> W3
-    W3 --> W4
-```
+**Workflow:**
+1. User submits a request to the **Orchestrator**
+2. Orchestrator assesses complexity and routes to specialist agents
+3. **Analyst** clarifies requirements → user approval checkpoint
+4. **Planner** creates implementation plan → user approval checkpoint
+5. **Programmer** implements code, iterates with **Reviewer** until passing
+6. Session artifacts are saved to `.knowledge/sessions/<session-id>/`
 
 ## Options
 
