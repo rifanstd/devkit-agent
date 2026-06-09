@@ -16,17 +16,17 @@ agents/           # Agent definitions (orchestrator + 4 subagents)
   planner.md      # Implementation planning (subagent)
   programmer.md   # Code implementation (subagent)
   reviewer.md     # Code review and testing (subagent)
-skills/           # Skill definitions (loaded by agents at runtime)
-  brainstorming/             # Requirement analysis workflow (has scripts/ for visual companion)
-  receiving-code-review/     # Handling review feedback
-  requesting-code-review/    # Code review methodology
+skills/                     # Skill definitions (loaded by agents at runtime)
+  brainstorming/            # Requirement analysis workflow (has scripts/ for visual companion)
+  receiving-code-review/    # Handling review feedback
+  requesting-code-review/   # Code review methodology
   subagent-driven-development/ # Dispatching subagents for plan execution
-  systematic-debugging/      # Debugging methodology (has scripts/)
+  systematic-debugging/     # Debugging methodology (has scripts/)
   verification-before-completion/ # Evidence before claims
-  writing-plans/             # Implementation plan creation
-    SKILL.md      # Skill definition (required per skill)
-    *.md           # Supporting prompts, references
-    scripts/       # Helper scripts (if any)
+  writing-plans/            # Implementation plan creation
+  <skill-name>/SKILL.md     # Skill definition (required per skill)
+  <skill-name>/*.md         # Supporting prompts, references
+  <skill-name>/scripts/     # Helper scripts (if any)
 ```
 
 ## Multi-Agent Pipeline
@@ -81,13 +81,14 @@ In multi-agent mode, all artifacts go under `.knowledge/sessions/<session-id>/`:
 
 Session ID format: `<YYYYMMDD>-<slugified-session-name>`
 
-`.knowledge/` is session-specific ephemeral data — do not commit it.
+`.knowledge/` is session-specific ephemeral data — do not commit it. Note: it is NOT in `.gitignore` — you must exclude it manually.
 
 ## Conventions
 
 - Agent files are self-contained prompts — each subagent gets NO memory of prior conversation
 - Always include full context when delegating to a subagent
 - Agents load skills at runtime; skill references in agent files use the pattern `## Skill Usage: <skill-name>`
+- **Mandatory skill loading**: If an agent file contains "Skill Usage" sections, the agent MUST load those skills via the `skill` tool BEFORE starting any work
 - When adding or modifying a skill, update all agents that reference it
 - `.knowledge/project.md` is an optional project context file referenced by multiple agents
 
