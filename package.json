@@ -1,6 +1,6 @@
 {
   "name": "devkit-agent",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Multi-agent coding pipeline installer for OpenCode. Install agents and skills with one command.",
   "type": "module",
   "bin": {
