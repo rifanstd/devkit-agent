@@ -1,5 +1,5 @@
 {
-  "name": "@rifanstd/devkit-agent",
+  "name": "devkit-agent",
   "version": "1.0.0",
   "description": "Multi-agent coding pipeline installer for OpenCode. Install agents and skills with one command.",
   "type": "module",
