@@ -1,4 +1,4 @@
-# devkit-agent
+# DevKit Agent
 
 Multi-agent coding pipeline for OpenCode. Install agents and skills with one command.
 
