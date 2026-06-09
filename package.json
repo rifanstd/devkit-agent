@@ -1,0 +1,52 @@
+{
+  "name": "@rifanstd/devkit-agent",
+  "version": "1.0.0",
+  "description": "Multi-agent coding pipeline installer for OpenCode. Install agents and skills with one command.",
+  "type": "module",
+  "bin": {
+    "devkit-agent": "./bin/cli.mjs"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "agents",
+    "skills"
+  ],
+  "scripts": {
+    "build": "obuild",
+    "dev": "node --import tsx src/cli.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "opencode",
+    "agents",
+    "skills",
+    "multi-agent",
+    "cli",
+    "installer",
+    "coding-pipeline"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rifanstd/devkit-agent.git"
+  },
+  "homepage": "https://github.com/rifanstd/devkit-agent",
+  "bugs": {
+    "url": "https://github.com/rifanstd/devkit-agent/issues"
+  },
+  "author": "rifanstd",
+  "license": "MIT",
+  "dependencies": {
+    "@clack/prompts": "^0.11.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.2",
+    "obuild": "^0.4.22",
+    "tsx": "^4.19.0",
+    "typescript": "^5.9.3"
+  }
+}
